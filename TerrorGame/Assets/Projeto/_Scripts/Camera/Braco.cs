@@ -17,16 +17,6 @@ public class Braco : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
-
     private void Update()
     {
         Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane));

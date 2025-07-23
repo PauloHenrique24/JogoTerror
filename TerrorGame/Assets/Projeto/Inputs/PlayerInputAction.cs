@@ -118,6 +118,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Comanda"",
+                    ""type"": ""Button"",
+                    ""id"": ""936163b1-defd-4215-8ce8-eec0d9e5eb2d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +316,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e6d1dc1-7872-4e94-8406-67d600b44f89"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Comanda"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -318,6 +338,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
+        m_Player_Comanda = m_Player.FindAction("Comanda", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -401,6 +422,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Click;
+    private readonly InputAction m_Player_Comanda;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -424,6 +446,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Click".
         /// </summary>
         public InputAction @Click => m_Wrapper.m_Player_Click;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Comanda".
+        /// </summary>
+        public InputAction @Comanda => m_Wrapper.m_Player_Comanda;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -459,6 +485,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Comanda.started += instance.OnComanda;
+            @Comanda.performed += instance.OnComanda;
+            @Comanda.canceled += instance.OnComanda;
         }
 
         /// <summary>
@@ -479,6 +508,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Comanda.started -= instance.OnComanda;
+            @Comanda.performed -= instance.OnComanda;
+            @Comanda.canceled -= instance.OnComanda;
         }
 
         /// <summary>
@@ -540,5 +572,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Comanda" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnComanda(InputAction.CallbackContext context);
     }
 }

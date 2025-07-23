@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Sensibilidade do Mouse")]
-    public float mouseSensitivity = 1f;
 
     [Header("Limites de Rotação Vertical (X)")]
     public float minX = -60f;
@@ -44,8 +42,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
+        float mouseX = lookInput.x * GameController.MouseSensitivity * Time.deltaTime;
+        float mouseY = lookInput.y * GameController.MouseSensitivity * Time.deltaTime;
 
         rotationY += mouseX;
         rotationX -= mouseY;
